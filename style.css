@@ -93,6 +93,7 @@ h1 { font-size: 32px; font-weight: 600; margin: 0 0 4px; }
   font-size: 13px;
 }
 .pair .shot { margin-bottom: 16px; }
+.pair img.shot { aspect-ratio: 4 / 3; object-fit: cover; object-position: top; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; padding: 0; list-style: none; }
 .chips li {

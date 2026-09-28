@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quinten Goodman</title>
+  <meta name="description" content="Finance student building quantitative and AI tools.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Quinten Goodman</h1>
+    <p class="headline">Finance student building quantitative and AI tools</p>
+    <p class="intro">
+      I'm studying for an MSc in Finance at Nova SBE (expected June 2027) after a B.S. in
+      Finance and Management from Arizona State (4.0 major GPA), and I'm a member of the
+      Nova Students Portfolio student-managed fund. I build the tools I use to trade and
+      research. I'm looking for roles in analytical finance, trading, or AI applied to markets.
+    </p>
+    <p class="location">Lisbon, Portugal · U.S. citizen</p>
+  </header>
+
+  <article class="card featured">
+    <div>
+      <p class="label">Featured project</p>
+      <h2>WheelTracker</h2>
+      <p class="subtitle">Quantitative options analytics platform</p>
+      <p>
+        Runs a rules-based cash-secured put and covered call strategy on a personal
+        portfolio, tracked against a 1–2% monthly return target.
+      </p>
+      <ul>
+        <li>Syncs brokerage positions (SnapTrade) and option chains, Greeks, and IV (Tradier)
+          into SQLite, and links each wheel cycle from put to assignment to covered call.</li>
+        <li>Dealer gamma exposure (GEX) model across strikes and expirations out to 28 days,
+          finding gamma walls and the zero-gamma flip.</li>
+        <li>Streamlit dashboard and contract screener that ranks contracts by annualized
+          premium, spread, open interest, IV, and GEX at the strike.</li>
+      </ul>
+      <p class="hard">
+        Hardest part: keeping the gamma map live. The dashboard refreshes prices every
+        10 seconds and full option chains every 2 minutes without stalling the page.
+      </p>
+      <ul class="chips">
+        <li>Python</li><li>pandas</li><li>SQLite</li><li>Streamlit</li>
+        <li>SnapTrade API</li><li>Tradier API</li>
+      </ul>
+      <a class="repo" href="https://github.com/goodmanquinten/WheelTracker">View code on GitHub</a>
+    </div>
+    <div class="shot placeholder">Dashboard screenshot</div>
+  </article>
+
+  <div class="pair">
+    <article class="card">
+      <img class="shot" src="assets/news-alerts.png"
+           alt="News Alerts digest in Telegram with per-ticker summaries and source links">
+      <h3>News Alerts</h3>
+      <p class="subtitle">AI-summarized market news for picking trades</p>
+      <ul>
+        <li>Claude filters and summarizes market news, with an immediate alert for anything
+          relevant and pre-open and end-of-day digests on Telegram.</li>
+        <li>Every item links its source, and feeds WheelTracker's choice of which names to
+          sell puts on and how to read the market regime.</li>
+      </ul>
+      <ul class="chips">
+        <li>Python</li><li>Claude API</li><li>Finnhub</li><li>Telegram</li>
+      </ul>
+      <a class="repo" href="https://github.com/goodmanquinten/WheelTracker/tree/main/src/wheel_tracker/news">View code on GitHub</a>
+    </article>
+
+    <article class="card">
+      <img class="shot" src="assets/jobscout.png"
+           alt="JobScout weekly digest in Telegram with scored job matches">
+      <h3>JobScout</h3>
+      <p class="subtitle">Job-search agent</p>
+      <ul>
+        <li>Checks company job boards and Handshake alert emails, drops obvious non-fits, and
+          has Claude score the rest against my resume.</li>
+        <li>Sends a weekly Telegram digest, pings strong matches closing within 7 days, and
+          reminds me before saved jobs' deadlines.</li>
+      </ul>
+      <ul class="chips">
+        <li>Python</li><li>Claude API</li><li>Gmail API</li><li>Telegram</li>
+      </ul>
+      <a class="repo" href="https://github.com/goodmanquinten/JobScout">View code on GitHub</a>
+    </article>
+  </div>
+
+  <footer>
+    <a href="assets/resume.pdf">Resume (PDF)</a>
+    <a href="mailto:quinten@goodmansonline.com">quinten@goodmansonline.com</a>
+    <a href="https://www.linkedin.com/in/quintengoodman/">linkedin.com/in/quintengoodman</a>
+    <a href="https://github.com/goodmanquinten">github.com/goodmanquinten</a>
+  </footer>
+</main>
+</body>
+</html>

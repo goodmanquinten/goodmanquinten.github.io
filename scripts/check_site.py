@@ -9,10 +9,14 @@ ROOT = Path(__file__).resolve().parent.parent
 PHONE = re.compile(r"480\D{0,3}678\D{0,3}4610")
 REQUIRED_TEXT = [
     "Quinten Goodman",
-    "WheelTracker",
-    "Quantitative options analytics platform",
-    "News Alerts",
-    "JobScout",
+    "Options Analytics Dashboard",
+    "AI Job Search Agent",
+    "AI Market News Digest",
+    "REAL DATA",
+    "SAMPLE DATA",
+    "View code",
+    "Nova Students Portfolio",
+    "Solugenix",
     "quinten@goodmansonline.com",
     "linkedin.com/in/quintengoodman",
     "github.com/goodmanquinten",

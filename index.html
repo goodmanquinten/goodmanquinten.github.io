@@ -4,98 +4,176 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quinten Goodman</title>
-  <meta name="description" content="Finance student building quantitative and AI tools.">
+  <meta name="description" content="Finance × AI · MSc Finance, Nova SBE. Options analytics, an AI job search agent and an AI market news digest, each shown building itself.">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<nav class="rail" aria-label="Sections">
+  <a href="#p1" data-sec="p1"><span>01</span></a>
+  <a href="#p2" data-sec="p2"><span>02</span></a>
+  <a href="#p3" data-sec="p3"><span>03</span></a>
+  <a href="#close" data-sec="close"><span>—</span></a>
+</nav>
+
+<header class="hero" id="hero">
+  <h1><span class="line">Quinten</span><span class="line">Goodman</span></h1>
+  <p class="sub">Finance × AI · MSc Finance, Nova SBE</p>
+  <div class="cue">Scroll</div>
+</header>
+
 <main>
-  <header>
-    <h1>Quinten Goodman</h1>
-    <p class="headline">Finance student building quantitative and AI tools</p>
-    <p class="intro">
-      I'm studying for an MSc in Finance at Nova SBE (expected June 2027) after a B.S. in
-      Finance and Management from Arizona State (4.0 major GPA), and I'm a member of the
-      Nova Students Portfolio student-managed fund. I build the tools I use to trade and
-      research. I'm looking for roles in analytical finance, trading, or AI.
-    </p>
-    <p class="location">Lisbon, Portugal · U.S. citizen</p>
-  </header>
 
-  <article class="card featured">
-    <div>
-      <p class="label">Featured project</p>
-      <h2>WheelTracker</h2>
-      <p class="subtitle">Quantitative options analytics platform</p>
-      <p>
-        Runs a rules-based cash-secured put and covered call strategy on a personal
-        portfolio, tracked against a 1–2% monthly return target.
-      </p>
-      <ul>
-        <li>Syncs brokerage positions (SnapTrade) and option chains, Greeks, and IV (Tradier)
-          into SQLite, and links each wheel cycle from put to assignment to covered call.</li>
-        <li>Dealer gamma exposure (GEX) model across strikes and expirations out to 28 days,
-          finding gamma walls and the zero-gamma flip.</li>
-        <li>Streamlit dashboard and contract screener that ranks contracts by annualized
-          premium, spread, open interest, IV, and GEX at the strike.</li>
-      </ul>
-      <p>The analytics and GEX math are pure functions covered by 651 automated tests.</p>
-      <p class="hard">
-        Hardest part: keeping the gamma map live. The dashboard refreshes prices every
-        10 seconds and full option chains every 2 minutes without stalling the page.
-      </p>
-      <ul class="chips">
-        <li>Python</li><li>pandas</li><li>SQLite</li><li>Streamlit</li>
-        <li>SnapTrade API</li><li>Tradier API</li>
-      </ul>
-      <a class="repo" href="https://github.com/goodmanquinten/WheelTracker">View code on GitHub</a>
-    </div>
-    <img class="shot" src="assets/wheeltracker.png"
-         alt="WheelTracker gamma exposure heatmap across strikes and expirations, in demo mode">
-
-  </article>
-
-  <div class="pair">
-    <article class="card">
-      <img class="shot" src="assets/news-alerts.png"
-           alt="News Alerts digest in Telegram with per-ticker summaries and source links">
-      <h3>News Alerts</h3>
-      <p class="subtitle">AI-summarized market news for picking trades</p>
-      <ul>
-        <li>Claude filters and summarizes market news, with an immediate alert for anything
-          relevant and pre-open and end-of-day digests on Telegram.</li>
-        <li>Every item links its source, and feeds WheelTracker's choice of which names to
-          sell puts on and how to read the market regime.</li>
-      </ul>
-      <ul class="chips">
-        <li>Python</li><li>Claude API</li><li>Finnhub</li><li>Telegram</li>
-      </ul>
-      <a class="repo" href="https://github.com/goodmanquinten/WheelTracker/tree/main/src/wheel_tracker/news">View code on GitHub</a>
-    </article>
-
-    <article class="card">
-      <img class="shot" src="assets/jobscout.png"
-           alt="JobScout weekly digest in Telegram with scored job matches">
-      <h3>JobScout</h3>
-      <p class="subtitle">Job-search agent</p>
-      <ul>
-        <li>Checks company job boards and Handshake alert emails, drops obvious non-fits, and
-          has Claude score the rest against my resume.</li>
-        <li>Sends a weekly Telegram digest, pings strong matches closing within 7 days, and
-          reminds me before saved jobs' deadlines.</li>
-      </ul>
-      <ul class="chips">
-        <li>Python</li><li>Claude API</li><li>Gmail API</li><li>Telegram</li>
-      </ul>
-      <a class="repo" href="https://github.com/goodmanquinten/JobScout">View code on GitHub</a>
-    </article>
+<!-- 01 · Options -->
+<section class="proj" id="p1">
+  <div class="head">
+    <div class="n">01<span class="tag" id="p1-label">REAL DATA · NBIS</span></div>
+    <h2>Options Analytics Dashboard</h2>
+    <p>Maps dealer gamma exposure across strikes and expirations, then checks candidate puts against my delta, expiration and yield limits to pick a strike.</p>
   </div>
+  <div class="body hmwrap">
+    <div class="hm" id="hm">
+      <div class="hm-grid" id="hmgrid"></div>
+      <div class="band" id="dteBand"><span class="bandlbl">7–28 DTE</span></div>
+      <div class="band" id="deltaBand"><span class="bandlbl low">Δ 0.15–0.30</span></div>
+      <div class="spot" id="spot"><span id="spotlbl"></span></div>
+      <div class="flip" id="flip"><span id="fliplbl"></span></div>
+      <div class="mark" id="m0"></div><div class="mark" id="m1"></div><div class="mark win" id="mw"></div>
+    </div>
+    <div class="side">
+      <div class="panel">
+        <h3>My limits</h3>
+        <div class="rule"><i>1</i>Expiration 7–28 days</div>
+        <div class="rule"><i>2</i>Put delta 0.15–0.30</div>
+        <div class="rule"><i>3</i>≥ 12% annualized premium</div>
+        <div class="rule"><i>4</i>At or below that expiry's put wall</div>
+      </div>
+      <div class="panel">
+        <h3 id="candhead">Candidates</h3>
+        <div class="cand hd"><span>Put</span><span>Delta</span><span>Ann.</span><span>Put wall</span></div>
+        <div id="cands"></div>
+        <p class="verdict" id="verdict"></p>
+      </div>
+      <a class="code" href="https://github.com/goodmanquinten/WheelTracker">View code →</a>
+    </div>
+  </div>
+</section>
 
-  <footer>
+<!-- 02 · Jobs -->
+<section class="proj" id="p2">
+  <div class="head">
+    <div class="n">02<span class="tag">SAMPLE DATA</span></div>
+    <h2>AI Job Search Agent</h2>
+    <p>Pulls new postings every week, removes anything that breaks my rules, scores the rest against my interests and experience, and sends me a ranked shortlist.</p>
+  </div>
+  <div class="body jobwrap">
+    <div class="panel rules">
+      <h3>My rules</h3>
+      <div class="rule" data-k="1"><i>1</i>Entry level, ≤ 2 yrs required</div>
+      <div class="rule" data-k="2"><i>2</i>Starts summer 2027 or later</div>
+      <div class="rule" data-k="3"><i>3</i>U.S. or Europe</div>
+      <div class="rule" data-k="4"><i>4</i>Finance, AI, tech or consulting</div>
+    </div>
+    <div class="feed" id="feed">
+      <div class="job" data-fit="9"><div><b>Meridian AI</b><small>Financial Analyst</small></div><span class="fit">fit 9/10</span></div>
+      <div class="job fail" data-rule="1"><div><b>Halden Capital</b><small>Vice President, Equity Derivatives</small></div><span class="why">✕ 1 · VP level</span><span class="strike"></span></div>
+      <div class="job" data-fit="8"><div><b>Northgate Partners</b><small>Business Analyst, AI Practice</small></div><span class="fit">fit 8/10</span></div>
+      <div class="job fail" data-rule="3"><div><b>Arcfield Bank</b><small>Markets Analyst (Singapore)</small></div><span class="why">✕ 3 · Singapore</span><span class="strike"></span></div>
+      <div class="job" data-fit="7"><div><b>Sable Analytics</b><small>Quant Research Intern, Summer 2027</small></div><span class="fit">fit 7/10</span></div>
+      <div class="job fail" data-rule="2"><div><b>Brightwater AM</b><small>Analyst Program, starts Jan 2026</small></div><span class="why">✕ 2 · starts 2026</span><span class="strike"></span></div>
+      <div class="job fail" data-rule="4"><div><b>Lumen Retail</b><small>Store Operations Associate</small></div><span class="why">✕ 4 · retail ops</span><span class="strike"></span></div>
+      <div class="job" data-fit="6"><div><b>Corvid Consulting</b><small>Data &amp; AI Consultant</small></div><span class="fit">fit 6/10</span></div>
+    </div>
+    <div class="side">
+      <div class="tg" id="tg-jobs">
+        <div class="top"><div class="av av-jobs">JS</div><div><b>JobScout</b><small>bot</small></div></div>
+        <div class="chat"><div class="bubble">
+          <div class="t">Jobs this week</div>
+          <div class="ln">#1 <b>Meridian AI</b>, Financial Analyst · 9/10 · <u>link</u></div>
+          <div class="ln">#2 <b>Northgate Partners</b>, Business Analyst, AI Practice · 8/10 · <u>link</u></div>
+          <div class="ln">#3 <b>Sable Analytics</b>, Quant Research Intern, Summer 2027 · 7/10 · <u>link</u></div>
+          <div class="ln">#4 <b>Corvid Consulting</b>, Data &amp; AI Consultant · 6/10 · <u>link</u></div>
+          <div class="ln ft">Reply /save N, /applied N or /skip N</div>
+          <div class="tm">Sun 18:00</div>
+        </div></div>
+      </div>
+      <a class="code" href="https://github.com/goodmanquinten/JobScout">View code →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · News -->
+<section class="proj" id="p3">
+  <div class="head">
+    <div class="n">03<span class="tag">REAL DATA · SEP 13, 2026</span></div>
+    <h2>AI Market News Digest</h2>
+    <p>Reads every headline on the names I trade or watch, drops filings, listicles and repeats, and sends a twice-daily summary with a link to every source. Big news pings me right away.</p>
+  </div>
+  <div class="body newswrap">
+    <div class="stream" id="stream">
+      <div class="hl drop"><small><b>INTC</b> · MarketBeat</small>Archford Capital Strategies LLC Cuts Stock Holdings in Intel Corporation<span class="dtag">13F FILING</span><span class="strike"></span></div>
+      <div class="hl drop"><small><b>INTC</b> · MarketBeat</small>44,822 Shares in Intel Corporation Acquired by Core Capital Management<span class="dtag">13F FILING</span><span class="strike"></span></div>
+      <div class="hl drop"><small><b>INTC</b> · Yahoo</small>Got $1,000? Here's What an Intel Investment Made the Day the U.S. Government Took Its Stake Would Be Worth Today.<span class="dtag">LISTICLE</span><span class="strike"></span></div>
+      <div class="hl"><small><b>INTC</b> · ad-hoc-news.de</small>Intel stock gains as AI-driven Q2 2026 results and upbeat Q3 outlook impress analysts</div>
+      <div class="hl drop"><small><b>INTC</b> · The Motley Fool</small>Predicting Intel's Value by 2030 Could Make It Worth a Look Right Now<span class="dtag">LISTICLE</span><span class="strike"></span></div>
+      <div class="hl drop"><small><b>INTC</b> · Yahoo · Globe and Mail ×2 · fool.com</small>Predicting Intel's Value by 2030 Could Make It Worth a Look Right Now<span class="dtag">REPEAT ×4</span><span class="strike"></span></div>
+      <div class="hl key"><small><b>INTC</b> · Yahoo</small>MU, SNDK, INTC, AMD: Chip Stocks Slide After Anthropic Calls For AI Industry Slowdown</div>
+      <div class="hl"><small><b>INTC</b> · Yahoo</small>AMD and Intel’s Shared AI Instructions Reach GCC. Can Software Cooperation Strengthen Both Stocks?</div>
+      <div class="hl key"><small><b>INTC</b> · Yahoo</small>Intel (INTC) Is Winning From the CPU Shortage, but Its Foundry Valuation Needs More Proof</div>
+      <div class="hl drop"><small><b>INTC</b> · Yahoo · Yahoo Finance</small>Forget Intel. Buy This Tech Stock in September Instead.<span class="dtag">LISTICLE</span><span class="strike"></span></div>
+    </div>
+    <div class="side">
+      <div class="tg" id="tg-news">
+        <div class="top"><div class="av av-news">ND</div><div><b>News Digest</b><small>bot</small></div></div>
+        <div class="chat"><div class="bubble">
+          <div class="t">📰 Digest · Sun Sep 13, 16:30 EDT</div>
+          <div class="ln"><b>INTC</b> $102.94</div>
+          <div class="ln">• Chip stocks including INTC sold off after Anthropic publicly urged an AI industry slowdown, raising sentiment risk around the AI infrastructure spending cycle. <a href="https://finnhub.io/api/news?id=d610f6ef7b0b38f225d3912367f42af0b6e869261694dcb6006a8e6d1b802d95" target="_blank" rel="noopener">Yahoo Finance</a></div>
+          <div class="ln">• Analyst commentary says Intel is a direct beneficiary of the CPU shortage as agentic AI shifts the bottleneck to general-purpose compute, though foundry valuation remains unproven. <a href="https://finnhub.io/api/news?id=958a691c65294af0436ba0a4f03da20b8a7bae7677a8ea9914091a4689266779" target="_blank" rel="noopener">Yahoo Finance</a></div>
+          <div class="ln">+11 more: <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOc3pGMmgzY1c1LVNUT0xUOVp0TmZqcE1GS0RNLXpGdUpTeHJoRC1Nc3h2bXJxcy1LbFdYYmhsYXdLUlRxU1ZKODlIUHA5MG0zaUlBNXBNYVNpZWhCNmZSdFB0aVRwTUZ6RE44aUdiUWRWbzNPdGVEdm8tTVNOalN0YUJfOXljazM5YWF1d0Z0MHpqajhUR2Z6WFVYZjI4cTVUTVB0NUUzcVdRZUdGU1c4QjgtNENkTlczR1Y5LQ?oc=5" target="_blank" rel="noopener">Ad-Hoc-News</a> · <a href="https://finnhub.io/api/news?id=b79e5e374a55b19b2f6dfd8efd130e99ee375928720b1d29bde8d1729130585f" target="_blank" rel="noopener">Yahoo Finance</a></div>
+          <div class="tm">16:30</div>
+        </div></div>
+      </div>
+      <a class="code" href="https://github.com/goodmanquinten/WheelTracker/tree/main/src/wheel_tracker/news">View code →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Close -->
+<section class="close" id="close">
+  <div class="cols">
+    <div>
+      <h3>Now</h3>
+      <p><b>Nova SBE</b>, MSc Finance, expected June 2027</p>
+      <p><b>Nova Students Portfolio</b>, member of the student-managed investment fund</p>
+    </div>
+    <div>
+      <h3>Before</h3>
+      <p><b>Arizona State University</b>, W. P. Carey, B.S. Finance and Management, 4.0 major GPA, May 2026</p>
+      <p><b>Korea University</b>, exchange semester, 2025</p>
+      <p><b>Solugenix</b>, Staff Accountant Intern, Oct 2023 – May 2026: benchmarked comparables for a seven-figure credit facility, automated payroll and asset tracking, built Ramp automation rules</p>
+    </div>
+  </div>
+  <div class="links">
     <a href="assets/resume.pdf">Resume (PDF)</a>
     <a href="mailto:quinten@goodmansonline.com">quinten@goodmansonline.com</a>
     <a href="https://www.linkedin.com/in/quintengoodman/">linkedin.com/in/quintengoodman</a>
     <a href="https://github.com/goodmanquinten">github.com/goodmanquinten</a>
-  </footer>
+  </div>
+  <p class="foot">Lisbon, Portugal · U.S. citizen</p>
+</section>
+
 </main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/options.js"></script>
+<script src="js/jobs.js"></script>
+<script src="js/news.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

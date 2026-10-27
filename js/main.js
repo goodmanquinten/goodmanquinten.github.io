@@ -23,14 +23,14 @@
   }
 
   /* each section is independent: one failing (e.g. data/nbis.json missing) can't stop the others */
-  for (const init of [initOptions, initJobs, initNews]) {
+  for (const init of [initOptions, initJobs, initNews, initPitch]) {
     try { await init(animate); } catch (e) { console.error(e); }
   }
 
   /* progress rail: highlights the section in view; links use smooth scroll when available */
   const links = [...document.querySelectorAll('.rail a')];
   const mark = id => links.forEach(a => a.classList.toggle('on', a.dataset.sec === id));
-  const ids = ['p1', 'p2', 'p3', 'close'];
+  const ids = ['p1', 'p2', 'p3', 'p4', 'close'];
   if (animate) {
     ids.forEach(id => ScrollTrigger.create({
       trigger: '#' + id, start: 'top center', end: 'bottom center',

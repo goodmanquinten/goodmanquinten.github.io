@@ -17,6 +17,8 @@ REQUIRED_TEXT = [
     "View code",
     "Nova Students Portfolio",
     "Solugenix",
+    "Stock Pitch: Grab Holdings",
+    "Mark to market",
     "quinten@goodmansonline.com",
     "linkedin.com/in/quintengoodman",
     "github.com/goodmanquinten",

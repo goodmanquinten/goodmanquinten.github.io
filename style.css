@@ -117,6 +117,29 @@ html.anim .job.fail { display: grid; }
 .hl.drop { opacity: .3; }
 .hl.key { border-color: var(--cyan); background: #10222c; }
 
+/* 04 pitch */
+.pitch { padding: 12vh 6vw 10vh 5vw; display: flex; flex-direction: column; gap: 4vh; }
+.pitchgrid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; align-items: start; }
+.drivers { list-style: none; margin: 0; padding: 0; counter-reset: d; display: flex; flex-direction: column; gap: 22px; }
+.drivers li { counter-increment: d; display: grid; grid-template-columns: 44px minmax(0, 1fr); color: var(--soft); max-width: 640px; }
+.drivers li::before { content: "0" counter(d); font: 12px var(--mono); color: var(--cyan); padding-top: 6px; grid-row: span 2; }
+.drivers li b { color: var(--ink); font-size: clamp(20px, 2vw, 26px); letter-spacing: -.02em; display: block; margin-bottom: 4px; }
+.kv { display: flex; justify-content: space-between; font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.kv:last-of-type { border-bottom: 0; }
+.kv span { color: var(--muted); }
+.kv b { font: 600 14px var(--mono); }
+.kv em { font-style: normal; color: #3ecf8e; margin-left: 6px; }
+.kv em.neg, .pos-neg { color: var(--red); }
+#mtm h3 span { color: var(--muted); text-transform: none; letter-spacing: 0; }
+.up { color: #3ecf8e; } .down { color: var(--red); }
+.track { position: relative; height: 46px; margin-top: 10px; }
+.track .seg { position: absolute; left: 0; right: 0; top: 10px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red) 0 23%, #2a3140 23% 100%); }
+.track .tick { position: absolute; top: 4px; width: 2px; height: 16px; background: var(--muted); left: 23%; }
+.track .dot { position: absolute; top: 5px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px rgba(242, 211, 74, .7); left: 23%; }
+.track .lbl { position: absolute; top: 26px; font: 10px var(--mono); color: var(--muted); white-space: nowrap; }
+.track .l { left: 0; } .track .m { left: 23%; transform: translateX(-50%); } .track .r { right: 0; }
+.links-row { display: flex; gap: 20px; flex-wrap: wrap; }
+
 /* close */
 .close { min-height: 80vh; padding: 12vh 6vw 8vh 5vw; display: flex; flex-direction: column; justify-content: center; gap: 6vh; border-top: 1px solid var(--line); }
 .close .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; max-width: 1000px; }
@@ -149,6 +172,8 @@ html.anim .job.fail { display: grid; }
   .stream { grid-template-columns: minmax(0, 1fr); }
   .close { padding: 8vh 16px; }
   .close .cols { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .pitch { padding: 8vh 16px; }
+  .pitchgrid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -26,6 +26,7 @@
   <a href="#p1" data-sec="p1"><span>01</span></a>
   <a href="#p2" data-sec="p2"><span>02</span></a>
   <a href="#p3" data-sec="p3"><span>03</span></a>
+  <a href="#p4" data-sec="p4"><span>04</span></a>
   <a href="#close" data-sec="close"><span>—</span></a>
 </nav>
 
@@ -152,6 +153,41 @@
   </div>
 </section>
 
+<!-- 04 · Stock pitch -->
+<section class="pitch" id="p4">
+  <div class="head">
+    <div class="n">04<span class="tag">NOVA STUDENTS PORTFOLIO · PITCHED OCT 26, 2026</span></div>
+    <h2>Stock Pitch: Grab Holdings (GRAB)</h2>
+    <p>Southeast Asia's everyday app for rides, food delivery and payments. Profitable and growing about 20% a year, yet the stock had halved on fears of fee caps.</p>
+  </div>
+  <div class="pitchgrid">
+    <ol class="drivers">
+      <li><b>Scale is now profit</b>Revenue is growing faster than costs, so margins rise; ads, groceries and flat overheads should keep it going.</li>
+      <li><b>Fintech and Atome, the second engine</b>Grab lends to customers it already knows, and Atome adds a $1B loan book; today's small loss comes from growing loans about 3x a year.</li>
+      <li><b>The price already reflects fee caps</b>Today's only fee cap costs about 1% of revenue; even if Indonesia also caps car rides, our value ($3.04) is above the $2.68 pitch price.</li>
+    </ol>
+    <div class="side">
+      <div class="panel">
+        <h3>The call</h3>
+        <div class="kv"><span>Long at</span><b>$2.68</b></div>
+        <div class="kv"><span>Target, May 2027</span><b>$3.62 <em>+35%</em></b></div>
+        <div class="kv"><span>Stop</span><b>$2.40 <em class="neg">−10%</em></b></div>
+      </div>
+      <div class="panel" id="mtm" data-ticker="GRAB" data-entry="2.68" data-target="3.62" data-stop="2.40">
+        <h3>Mark to market <span id="mtm-asof"></span></h3>
+        <div class="kv"><span>Price</span><b id="mtm-px">—</b></div>
+        <div class="kv"><span>Since pitch</span><b id="mtm-ret">—</b></div>
+        <div class="track"><div class="seg"></div><i class="tick entry"></i><i class="dot" id="mtm-dot"></i>
+          <span class="lbl l">stop $2.40</span><span class="lbl m">$2.68</span><span class="lbl r">target $3.62</span></div>
+      </div>
+      <div class="links-row">
+        <a class="code" href="assets/pitches/GRAB-pitch.pdf" target="_blank" rel="noopener">Pitch deck (PDF) →</a>
+        <a class="code" href="assets/pitches/GRAB-pitch.pptx">PowerPoint ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Close -->
 <section class="close" id="close">
   <div class="cols">
@@ -184,6 +220,7 @@
 <script src="js/options.js"></script>
 <script src="js/jobs.js"></script>
 <script src="js/news.js"></script>
+<script src="js/pitch.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

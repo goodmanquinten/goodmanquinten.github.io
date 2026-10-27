@@ -116,6 +116,10 @@ def main() -> int:
         return 2
 
     w = pick["winner"]
+    in_band = [
+        p["strike"] for p in puts
+        if p["expiration"] == w["expiration"] and LIMITS["delta"][0] <= p["delta"] <= LIMITS["delta"][1]
+    ]
     out = {
         "ticker": TICKER,
         "date": today.isoformat(),
@@ -125,6 +129,7 @@ def main() -> int:
         "strikes": strikes,
         "net": [[_clean(round(float(m.net.at[k, e]))) for e in exps] for k in strikes],
         "limits": {"dte": list(LIMITS["dte"]), "delta": list(LIMITS["delta"]), "min_ann": LIMITS["min_ann"]},
+        "delta_band": [min(in_band), max(in_band)],
         "winner": w,
         "losers": pick["losers"],
         "verdict": f"Sell the {w['strike']:g}p, {w['dte']} days: passes all four, "

@@ -53,7 +53,7 @@ b { font-weight: 600; }
 
 /* 01 options */
 .hmwrap { grid-template-columns: minmax(0, 1fr) 360px; }
-.hm { position: relative; padding: 18px 0 18px; }
+.hm { position: relative; padding: 18px 0 18px; width: 100%; max-width: 620px; justify-self: center; }
 .hm-grid { display: grid; gap: 3px; font: 10px var(--mono); }
 .hm-grid .h { color: var(--muted); text-align: center; padding-bottom: 4px; }
 .hm-grid .s { color: var(--muted); text-align: right; padding-right: 8px; line-height: 2.3vh; }
@@ -61,6 +61,7 @@ b { font-weight: 600; }
 .band { position: absolute; border: 1.5px solid var(--cyan); background: rgba(63, 208, 255, .07); border-radius: 4px; pointer-events: none; }
 .bandlbl { position: absolute; top: -17px; left: 0; font: 10px var(--mono); color: var(--cyan); white-space: nowrap; }
 .bandlbl.low { top: auto; bottom: -17px; }
+#dteBand .bandlbl { left: auto; right: 0; }
 .spot, .flip { position: absolute; right: 0; height: 0; }
 .spot { border-top: 2px solid var(--cyan); box-shadow: 0 0 14px var(--cyan); }
 .flip { border-top: 2px dashed #ff8a5b; }

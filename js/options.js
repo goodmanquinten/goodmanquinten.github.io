@@ -81,7 +81,7 @@ window.initOptions = async function (animate) {
 
   const loseRows = [...document.querySelectorAll('#cands .cand.lose')];
   const tl = gsap.timeline({
-    scrollTrigger: { trigger: '#p1', start: 'top top', end: '+=850', scrub: .4, pin: true, onRefresh: place },
+    scrollTrigger: sectionST('#p1', { onRefresh: place }),
   });
   tl.from(cells, { opacity: 0, scale: .5, duration: .8, stagger: { each: .8 / cells.length } })
     .from(['#spot', '#flip'], { opacity: 0, scaleX: 0, transformOrigin: 'left center', duration: .3, stagger: .15 })

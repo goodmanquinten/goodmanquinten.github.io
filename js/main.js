@@ -1,5 +1,10 @@
 /* motion shell: decides whether to animate, then starts smooth scroll, the rail and each section */
 (async function () {
+  /* desktop: pin and scrub each build over 850px; phones: no pin, play once on entry */
+  const wide = matchMedia('(min-width: 901px)').matches;
+  window.sectionST = (trigger, extra = {}) => wide
+    ? { trigger, start: 'top top', end: '+=850', scrub: .4, pin: true, ...extra }
+    : { trigger, start: 'top 65%', toggleActions: 'play none none none', ...extra };
   const animate = !matchMedia('(prefers-reduced-motion: reduce)').matches && window.gsap && window.ScrollTrigger;
   let lenis = null;
 

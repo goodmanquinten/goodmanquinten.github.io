@@ -7,7 +7,7 @@ window.initJobs = async function (animate) {
   const keep = jobs.filter(j => !j.classList.contains('fail'));
   const rule = k => document.querySelector(`#p2 .rule[data-k="${k}"]`);
 
-  const tl = gsap.timeline({ scrollTrigger: { trigger: '#p2', start: 'top top', end: '+=850', scrub: .4, pin: true } });
+  const tl = gsap.timeline({ scrollTrigger: sectionST('#p2') });
   tl.from(jobs, { opacity: 0, x: -40, duration: .4, stagger: .04 });
   fails.forEach(j => {
     const r = rule(j.dataset.rule), chip = r.querySelector('i');

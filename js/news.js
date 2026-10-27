@@ -6,7 +6,7 @@ window.initNews = async function (animate) {
   const drops = heads.filter(h => h.classList.contains('drop'));
   const keys = heads.filter(h => h.classList.contains('key'));
 
-  const tl = gsap.timeline({ scrollTrigger: { trigger: '#p3', start: 'top top', end: '+=850', scrub: .4, pin: true } });
+  const tl = gsap.timeline({ scrollTrigger: sectionST('#p3') });
   tl.fromTo(heads, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: .4, stagger: .05 });
   drops.forEach(h => {
     tl.from(h.querySelector('.dtag'), { opacity: 0, duration: .08 })

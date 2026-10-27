@@ -129,7 +129,7 @@ html.anim .job.fail { display: grid; }
 .close .foot { font: 12px var(--mono); color: var(--muted); margin: 0; }
 
 /* pinned sections fill the screen exactly while animating */
-html.anim .proj { height: 100vh; min-height: 0; overflow: hidden; }
+@media (min-width: 901px) { html.anim .proj { height: 100vh; min-height: 0; overflow: hidden; } }
 
 @media (max-width: 900px) {
   .rail { display: none; }

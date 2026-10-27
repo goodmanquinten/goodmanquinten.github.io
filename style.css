@@ -47,12 +47,12 @@ b { font-weight: 600; }
 .seam { position: absolute; top: 0; bottom: 0; left: var(--x, 50%); width: 2px; margin-left: -1px; background: #fff; z-index: 4; box-shadow: 0 0 14px rgba(0, 0, 0, .5); pointer-events: none; }
 .knob { position: absolute; top: 76%; left: var(--x, 50%); width: 52px; height: 52px; margin: -26px 0 0 -26px; border-radius: 50%; background: #fff; color: #111; z-index: 5;
   display: flex; align-items: center; justify-content: center; font: 600 16px var(--mono); border: 0; cursor: ew-resize; box-shadow: 0 6px 24px rgba(0, 0, 0, .4); }
-.knob:focus-visible, .side:focus-visible, .back:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.knob:focus-visible, .door:focus-visible, .back:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 .hero.pulse .knob { animation: nudge 2.4s ease-in-out 1.4s 2; }
 @keyframes nudge { 0%, 100% { transform: translateX(0); } 30% { transform: translateX(-14px); } 60% { transform: translateX(14px); } }
-.side { position: absolute; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); z-index: 5; font: 600 12px var(--mono); letter-spacing: .14em; padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .35); cursor: pointer; }
-.side.w { left: max(18px, env(safe-area-inset-left, 0px)); background: rgba(11, 13, 18, .7); color: var(--cyan); }
-.side.l { right: max(18px, env(safe-area-inset-right, 0px)); background: rgba(255, 255, 255, .88); color: #111; }
+.door { position: absolute; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); z-index: 5; font: 600 12px var(--mono); letter-spacing: .14em; padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .35); cursor: pointer; }
+.door.w { left: max(18px, env(safe-area-inset-left, 0px)); background: rgba(11, 13, 18, .7); color: var(--cyan); }
+.door.l { right: max(18px, env(safe-area-inset-right, 0px)); background: rgba(255, 255, 255, .88); color: #111; }
 .tip { position: absolute; left: 0; right: 0; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); text-align: center; z-index: 5; font: 11px var(--mono); color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, .7); pointer-events: none; transition: opacity .4s; }
 .back { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: max(14px, env(safe-area-inset-left, 0px)); z-index: 50; font: 600 12px var(--mono); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--edge); background: rgba(18, 22, 32, .9); color: var(--ink); cursor: pointer; }
 html.on-life .back { background: rgba(236, 238, 233, .92); color: #191b17; border-color: #cfd3ca; }

@@ -45,8 +45,9 @@ window.initHero = async function (animate) {
     refresh();
     scrollToEl(onLife ? life : $('p1'));
   };
-  const goWork = () => animateTo(0, () => show('work'));
-  const goLife = () => animateTo(100, () => show('life'));
+  /* the work layer sits left of the seam: seam at 100% = all work, at 0% = all photo */
+  const goWork = () => animateTo(100, () => show('work'));
+  const goLife = () => animateTo(0, () => show('life'));
   const reset = () => {
     work.hidden = false; life.hidden = true; back.hidden = true;
     document.documentElement.classList.remove('on-life');
@@ -58,7 +59,7 @@ window.initHero = async function (animate) {
   /* drag anywhere on the hero; a mostly vertical gesture keeps scrolling the page */
   let start = null, dragging = false;
   hero.addEventListener('pointerdown', e => {
-    if (e.target.closest('.side')) return;
+    if (e.target.closest('.door')) return;
     start = { x: e.clientX, y: e.clientY, id: e.pointerId };
     dragging = e.target === knob;
     if (dragging) hero.setPointerCapture(e.pointerId);
@@ -74,18 +75,18 @@ window.initHero = async function (animate) {
     }
   });
   const end = () => {
-    if (dragging) { if (x <= 20) goWork(); else if (x >= 80) goLife(); else animateTo(50); }
+    if (dragging) { if (x >= 80) goWork(); else if (x <= 20) goLife(); else animateTo(50); }
     start = null; dragging = false;
   };
   hero.addEventListener('pointerup', end);
   hero.addEventListener('pointercancel', end);
   knob.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goWork(); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goLife(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goWork(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goLife(); }
   });
   $('go-work').addEventListener('click', goWork);
   $('go-life').addEventListener('click', goLife);
-  $('to-work').addEventListener('click', e => { e.preventDefault(); setX(0); show('work'); });
+  $('to-work').addEventListener('click', e => { e.preventDefault(); setX(100); show('work'); });
   back.addEventListener('click', reset);
   setX(50);
 };

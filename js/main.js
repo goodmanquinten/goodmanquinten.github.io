@@ -25,7 +25,7 @@
       gsap.ticker.lagSmoothing(0);
     }
     gsap.from('.hero .name .line', { yPercent: 105, duration: 1.1, ease: 'power4.out', stagger: .12 });
-    gsap.from(['.hero .sub', '.side', '.knob'], { opacity: 0, y: 10, duration: .8, delay: .6, stagger: .08 });
+    gsap.from(['.hero .sub', '.door', '.knob'], { opacity: 0, y: 10, duration: .8, delay: .6, stagger: .08 });
   }
 
   /* each section is independent: one failing (e.g. data/nbis.json missing) can't stop the others */

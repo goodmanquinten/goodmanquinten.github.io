@@ -19,6 +19,8 @@ REQUIRED_TEXT = [
     "Solugenix",
     "Stock Pitch: Grab Holdings",
     "Mark to market",
+    "Rotterdam",
+    "LIFE",
     "quinten@goodmansonline.com",
     "linkedin.com/in/quintengoodman",
     "github.com/goodmanquinten",

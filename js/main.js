@@ -19,18 +19,17 @@
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });  /* phone address bar showing/hiding must not re-pin */
     if (window.Lenis) {
-      lenis = new Lenis({ lerp: .1 });
+      lenis = window.lenis = new Lenis({ lerp: .1 });
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(t => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);
     }
-    gsap.from('.hero h1 .line', { yPercent: 105, duration: 1.1, ease: 'power4.out', stagger: .12 });
-    gsap.from(['.hero .sub', '.cue'], { opacity: 0, y: 10, duration: .8, delay: .6, stagger: .1 });
-    gsap.to('.cue', { opacity: 0, scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=200', scrub: true } });
+    gsap.from('.hero .name .line', { yPercent: 105, duration: 1.1, ease: 'power4.out', stagger: .12 });
+    gsap.from(['.hero .sub', '.side', '.knob'], { opacity: 0, y: 10, duration: .8, delay: .6, stagger: .08 });
   }
 
   /* each section is independent: one failing (e.g. data/nbis.json missing) can't stop the others */
-  for (const init of [initOptions, initJobs, initNews, initPitch]) {
+  for (const init of [initHero, initOptions, initJobs, initNews, initPitch]) {
     try { await init(animate); } catch (e) { console.error(e); }
   }
 

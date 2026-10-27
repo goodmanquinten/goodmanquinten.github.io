@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
-  <link rel="stylesheet" href="style.css?v=202610271207">
+  <link rel="stylesheet" href="style.css?v=202610271545">
 </head>
 <body>
 
@@ -30,13 +30,24 @@
   <a href="#close" data-sec="close"><span>—</span></a>
 </nav>
 
-<header class="hero" id="hero">
-  <h1><span class="line">Quinten</span><span class="line">Goodman</span></h1>
+<header class="hero" id="hero" aria-label="Choose a side: work or life">
+  <div class="layer work-l">
+    <div class="eye" id="hero-eye">REAL DATA · NBIS</div>
+    <div class="heat" id="hero-heat"></div>
+    <div class="v" id="hero-v"></div>
+  </div>
+  <div class="layer life-l"><img src="assets/img/18-1600.jpg" srcset="assets/img/18-800.jpg 800w, assets/img/18-1600.jpg 1600w" sizes="100vw" alt="Quinten on the Great Wall"></div>
+  <div class="seam"></div>
+  <h1 class="name"><span class="line">Quinten</span><span class="line">Goodman</span></h1>
   <p class="sub">Finance × AI · MSc Finance, Nova SBE</p>
-  <div class="cue">Scroll</div>
+  <button class="knob" id="knob" type="button" role="slider" aria-label="Drag left for work, right for life" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">⇆</button>
+  <div class="tip" id="tip">Drag the line · left for work, right for life</div>
+  <button class="side w" id="go-work" type="button">← WORK</button>
+  <button class="side l" id="go-life" type="button">LIFE →</button>
 </header>
+<button class="back" id="back" type="button" hidden>← Back</button>
 
-<main>
+<main id="work">
 
 <!-- 01 · Options -->
 <section class="proj" id="p1">
@@ -214,13 +225,52 @@
 
 </main>
 
+<!-- Life -->
+<section class="life" id="life">
+  <div class="life-in">
+    <div class="me">
+      <img src="assets/img/19-1600.jpg" srcset="assets/img/19-800.jpg 800w, assets/img/19-1600.jpg 1600w" sizes="(max-width: 760px) 100vw, 50vw" alt="Quinten smiling on the Great Wall">
+      <div>
+        <div class="eye">LISBON · U.S. CITIZEN</div>
+        <h2>Away from the screens</h2>
+        <p>I've been lucky to see a lot of the world. Every place I've lived in or passed through has made me a bit more patient, and better at understanding people who see things differently than I do.</p>
+        <p>I spent six months each in Rotterdam and Seoul, and now I'm in Lisbon for my master's. I take a camera everywhere. Finding the frame is how I hold on to a place.</p>
+        <p>When I'm not working, I'm usually cooking, bouldering or somewhere outside.</p>
+        <div class="chips"><span>Photography</span><span>Travel</span><span>Cooking</span><span>Bouldering</span><span>The outdoors</span></div>
+        <div class="path"><b>Arizona</b> → <b>Rotterdam</b> → <b>Seoul</b> → <b>Lisbon</b></div>
+      </div>
+    </div>
+    <div class="places"><span>VIETNAM</span><span>CHINA</span><span>JAPAN</span><span>TAIWAN</span><span>SOUTH KOREA</span><span>NETHERLANDS</span><span>PORTUGAL</span><span>USA</span></div>
+    <div class="gal-h"><h3>Photos</h3></div>
+    <div class="gal">
+      <figure><img src="assets/img/02-1600.jpg" srcset="assets/img/02-800.jpg 800w, assets/img/02-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Rice field, Vietnam" loading="lazy"><figcaption>Rice field, Vietnam</figcaption></figure>
+      <figure><img src="assets/img/10-1600.jpg" srcset="assets/img/10-800.jpg 800w, assets/img/10-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Rainbow over Yangshuo" loading="lazy"><figcaption>Rainbow over Yangshuo</figcaption></figure>
+      <figure><img src="assets/img/21-1600.jpg" srcset="assets/img/21-800.jpg 800w, assets/img/21-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Macaque and baby, Zhangjiajie" loading="lazy"><figcaption>Macaque and baby, Zhangjiajie</figcaption></figure>
+      <figure><img src="assets/img/13-1600.jpg" srcset="assets/img/13-800.jpg 800w, assets/img/13-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Heaven's Gate, Tianmen Mountain" loading="lazy"><figcaption>Heaven's Gate, Tianmen Mountain</figcaption></figure>
+      <figure><img src="assets/img/14-1600.jpg" srcset="assets/img/14-800.jpg 800w, assets/img/14-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Walkways, Chongqing" loading="lazy"><figcaption>Walkways, Chongqing</figcaption></figure>
+      <figure><img src="assets/img/22-1600.jpg" srcset="assets/img/22-800.jpg 800w, assets/img/22-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Sandstone pillars, Zhangjiajie" loading="lazy"><figcaption>Sandstone pillars, Zhangjiajie</figcaption></figure>
+      <figure><img src="assets/img/16-1600.jpg" srcset="assets/img/16-800.jpg 800w, assets/img/16-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Namsan Tower, Seoul" loading="lazy"><figcaption>Namsan Tower, Seoul</figcaption></figure>
+      <figure><img src="assets/img/09-1600.jpg" srcset="assets/img/09-800.jpg 800w, assets/img/09-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Snorkeling with a turtle, Kerama Islands" loading="lazy"><figcaption>Snorkeling with a turtle, Kerama Islands</figcaption></figure>
+      <figure><img src="assets/img/05-1600.jpg" srcset="assets/img/05-800.jpg 800w, assets/img/05-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Zhengbin Port, Keelung" loading="lazy"><figcaption>Zhengbin Port, Keelung</figcaption></figure>
+      <figure><img src="assets/img/03-1600.jpg" srcset="assets/img/03-800.jpg 800w, assets/img/03-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Tam Coc, Ninh Bình" loading="lazy"><figcaption>Tam Coc, Ninh Bình</figcaption></figure>
+      <figure><img src="assets/img/06-1600.jpg" srcset="assets/img/06-800.jpg 800w, assets/img/06-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Sunset paddle, Kerama Islands" loading="lazy"><figcaption>Sunset paddle, Kerama Islands</figcaption></figure>
+      <figure><img src="assets/img/11-1600.jpg" srcset="assets/img/11-800.jpg 800w, assets/img/11-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Yulong River bridge, Yangshuo" loading="lazy"><figcaption>Yulong River bridge, Yangshuo</figcaption></figure>
+      <figure><img src="assets/img/15-1600.jpg" srcset="assets/img/15-800.jpg 800w, assets/img/15-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Mount Fuji" loading="lazy"><figcaption>Mount Fuji</figcaption></figure>
+      <figure><img src="assets/img/08-1600.jpg" srcset="assets/img/08-800.jpg 800w, assets/img/08-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Harbor light, Kerama Islands" loading="lazy"><figcaption>Harbor light, Kerama Islands</figcaption></figure>
+      <figure><img src="assets/img/17-1600.jpg" srcset="assets/img/17-800.jpg 800w, assets/img/17-1600.jpg 1600w" sizes="(max-width: 760px) 50vw, 33vw" alt="Great Wall, Jinshanling" loading="lazy"><figcaption>Great Wall, Jinshanling</figcaption></figure>
+    </div>
+    <div class="lfoot"><a href="#p1" id="to-work">See my work →</a><a href="mailto:quinten@goodmansonline.com">quinten@goodmansonline.com</a><a href="assets/resume.pdf">Resume (PDF)</a></div>
+  </div>
+</section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/options.js?v=202610271207"></script>
-<script src="js/jobs.js?v=202610271207"></script>
-<script src="js/news.js?v=202610271207"></script>
-<script src="js/pitch.js?v=202610271207"></script>
-<script src="js/main.js?v=202610271207"></script>
+<script src="js/options.js?v=202610271545"></script>
+<script src="js/jobs.js?v=202610271545"></script>
+<script src="js/news.js?v=202610271545"></script>
+<script src="js/pitch.js?v=202610271545"></script>
+<script src="js/hero.js?v=202610271545"></script>
+<script src="js/main.js?v=202610271545"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@
   window.sectionST = (trigger, extra = {}) => wide
     ? { trigger, start: 'top top', end: '+=850', scrub: .4, pin: true, ...extra }
     : {
-        trigger, start: 'top top', end: '+=1500', scrub: .3, pin: true, anticipatePin: 1,
-        snap: { snapTo: 'labelsDirectional', duration: { min: .25, max: .6 }, delay: .05, ease: 'power1.inOut' },
+        trigger, start: 'top top', end: '+=950', scrub: .15, pin: true, anticipatePin: 1,
+        snap: { snapTo: 'labelsDirectional', duration: { min: .15, max: .35 }, delay: 0, ease: 'power2.out' },
         ...extra,
       };
   const animate = !matchMedia('(prefers-reduced-motion: reduce)').matches && window.gsap && window.ScrollTrigger;

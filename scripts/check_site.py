@@ -20,7 +20,7 @@ REQUIRED_TEXT = [
     "Stock Pitch: Grab Holdings",
     "Mark to market",
     "Rotterdam",
-    "LIFE",
+    "Open life",
     "quinten@goodmansonline.com",
     "linkedin.com/in/quintengoodman",
     "github.com/goodmanquinten",

@@ -61,9 +61,18 @@ b { font-weight: 600; }
 .knob:focus-visible, .door:focus-visible, .back:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 .hero.pulse .knob { animation: nudge 2.4s ease-in-out 1.4s 2; }
 @keyframes nudge { 0%, 100% { transform: translateX(0); } 30% { transform: translateX(-14px); } 60% { transform: translateX(14px); } }
-.door { position: absolute; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); z-index: 5; font: 600 12px var(--mono); letter-spacing: .14em; padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .35); cursor: pointer; }
-.door.w { left: max(18px, env(safe-area-inset-left, 0px)); background: rgba(11, 13, 18, .7); color: var(--cyan); }
-.door.l { right: max(18px, env(safe-area-inset-right, 0px)); background: rgba(255, 255, 255, .88); color: #111; }
+.door { position: absolute; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); z-index: 5; font: 600 13px var(--sans); padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .35); cursor: pointer; transition: transform .2s, box-shadow .2s; }
+.door:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, .35); }
+.door.w { left: max(18px, env(safe-area-inset-left, 0px)); background: rgba(18, 22, 32, .92); color: var(--cyan); border-color: rgba(63, 208, 255, .55); }
+.door.l { right: max(18px, env(safe-area-inset-right, 0px)); background: rgba(255, 255, 255, .92); color: #111; }
+/* larger screens: big buttons centered under each half */
+@media (min-width: 761px) {
+  .door { bottom: calc(44px + env(safe-area-inset-bottom, 0px)); font-size: 17px; padding: 16px 32px; }
+  .door.w { left: 25%; transform: translateX(-50%); }
+  .door.l { right: auto; left: 75%; transform: translateX(-50%); }
+  .door.w:hover, .door.l:hover { transform: translateX(-50%) translateY(-2px); }
+  .tip { bottom: calc(120px + env(safe-area-inset-bottom, 0px)); }
+}
 .tip { position: absolute; left: 0; right: 0; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); text-align: center; z-index: 5; font: 11px var(--mono); color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, .7); pointer-events: none; transition: opacity .4s; }
 .back { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: max(14px, env(safe-area-inset-left, 0px)); z-index: 50; font: 600 12px var(--mono); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--edge); background: rgba(18, 22, 32, .9); color: var(--ink); cursor: pointer; }
 html.on-life .back { background: rgba(236, 238, 233, .92); color: #191b17; border-color: #cfd3ca; }

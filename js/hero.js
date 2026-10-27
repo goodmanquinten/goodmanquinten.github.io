@@ -28,7 +28,15 @@ window.initHero = async function (animate) {
   } catch (e) { /* the grid is decoration here; the options section reports its own errors */ }
 
   let x = 50;
-  const setX = v => { x = Math.max(0, Math.min(100, v)); hero.style.setProperty('--x', x + '%'); knob.setAttribute('aria-valuenow', Math.round(x)); };
+  const workBits = [...hero.querySelectorAll('.work-l > *')];
+  const setX = v => {
+    x = Math.max(0, Math.min(100, v));
+    hero.style.setProperty('--x', x + '%');
+    knob.setAttribute('aria-valuenow', Math.round(x));
+    /* fully over to Work: the grid is a preview of the split, so it fades out and only the name stays */
+    const o = x <= 80 ? 1 : Math.max(0, (100 - x) / 20);
+    workBits.forEach(el => { el.style.opacity = o; });
+  };
   const animateTo = (to, done) => {
     if (!motion) { setX(to); done && done(); return; }
     const from = x, t0 = performance.now(), dur = 420;
@@ -37,8 +45,10 @@ window.initHero = async function (animate) {
   };
   const scrollToEl = el => window.lenis ? window.lenis.scrollTo(el, { immediate: !motion }) : el.scrollIntoView({ behavior: motion ? 'smooth' : 'auto' });
   const refresh = () => window.ScrollTrigger && ScrollTrigger.refresh();
+  let chosen = false, away = false;
   const show = side => {
     const onLife = side === 'life';
+    chosen = true; away = false;
     work.hidden = onLife; life.hidden = !onLife;
     document.documentElement.classList.toggle('on-life', onLife);
     back.hidden = false;
@@ -48,10 +58,14 @@ window.initHero = async function (animate) {
   /* the work layer sits left of the seam: seam at 100% = all work, at 0% = all photo */
   const goWork = () => animateTo(100, () => show('work'));
   const goLife = () => animateTo(0, () => show('life'));
-  const reset = () => {
+  const toSplit = () => {
+    chosen = false; away = false;
     work.hidden = false; life.hidden = true; back.hidden = true;
     document.documentElement.classList.remove('on-life');
     refresh();
+  };
+  const reset = () => {
+    toSplit();
     window.lenis ? window.lenis.scrollTo(0, { immediate: !motion }) : scrollTo({ top: 0, behavior: motion ? 'smooth' : 'auto' });
     animateTo(50);
   };
@@ -88,5 +102,11 @@ window.initHero = async function (animate) {
   $('go-life').addEventListener('click', goLife);
   $('to-work').addEventListener('click', e => { e.preventDefault(); setX(100); show('work'); });
   back.addEventListener('click', reset);
+  /* coming back up to the top after choosing a side turns the opener back into the 50/50 split */
+  addEventListener('scroll', () => {
+    if (!chosen) return;
+    if (scrollY > innerHeight * .6) away = true;
+    else if (away && scrollY < innerHeight * .15) { toSplit(); animateTo(50); }
+  }, { passive: true });
   setX(50);
 };

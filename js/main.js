@@ -5,7 +5,7 @@
   const wide = matchMedia('(min-width: 901px)').matches;
   window.isWide = wide;
   window.sectionST = (trigger, extra = {}) => wide
-    ? { trigger, start: 'top top', end: '+=850', scrub: .4, pin: true, ...extra }
+    ? { trigger, start: 'top top', end: '+=1400', scrub: .6, pin: true, ...extra }
     : {
         trigger, start: 'top top', end: '+=950', scrub: .15, pin: true, anticipatePin: 1,
         snap: { snapTo: 'labelsDirectional', duration: { min: .15, max: .35 }, delay: 0, ease: 'power2.out' },
@@ -19,7 +19,7 @@
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });  /* phone address bar showing/hiding must not re-pin */
     if (window.Lenis) {
-      lenis = window.lenis = new Lenis({ lerp: .1 });
+      lenis = window.lenis = new Lenis({ lerp: .08, wheelMultiplier: .7 });
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(t => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);

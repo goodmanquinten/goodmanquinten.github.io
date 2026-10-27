@@ -90,7 +90,7 @@ window.initOptions = async function (animate) {
   loseRows.forEach((r, i) => {
     tl.from(r.querySelector('.why'), { opacity: 0, duration: .1 })
       .from(r.querySelector('.x'), { scaleX: 0, transformOrigin: 'left center', duration: .15 })
-      .fromTo([r, '#m' + i], { opacity: 1 }, { opacity: .3, duration: .12 });
+      .fromTo([r, '#m' + i], { opacity: 1 }, { opacity: .3, duration: .12, immediateRender: false });
   });
   tl.fromTo('#mw', { scale: 1.8, opacity: 0 }, { scale: 1, opacity: 1, duration: .3, ease: 'back.out(2)' })
     .from('#verdict', { opacity: 0, y: 8, duration: .2 })

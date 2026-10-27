@@ -49,6 +49,8 @@ b { font-weight: 600; }
 .hero .name { position: absolute; left: 0; right: 0; top: 41%; transform: translateY(-58%); margin: 0; text-align: center; z-index: 3; pointer-events: none;
   font-size: clamp(54px, 10.5vw, 150px); font-weight: 600; letter-spacing: -.045em; line-height: .86; color: #f4f2ec;
   text-shadow: 0 2px 30px rgba(0, 0, 0, .35), 0 1px 3px rgba(0, 0, 0, .25); }
+/* over the photo the name turns the dark brown of the hills; the seam decides where */
+.hero .name.on-photo { color: #4a3a27; text-shadow: none; clip-path: inset(-20% -20% -20% var(--x, 50%)); }
 .hero .name .line { display: block; overflow: hidden; padding-bottom: .04em; }
 .hero .sub { position: absolute; left: 50%; transform: translateX(-50%); top: calc(41% + clamp(54px, 10.5vw, 150px) * .95); margin: 0; z-index: 3; pointer-events: none;
   width: max-content; max-width: calc(100% - 32px); text-align: center; font: 13px/1.4 var(--mono); color: #fff; letter-spacing: .02em;

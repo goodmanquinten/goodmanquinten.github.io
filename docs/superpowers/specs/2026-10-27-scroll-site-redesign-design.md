@@ -48,8 +48,9 @@ Project names are plain descriptions, not product names (repo names stay as they
    - Data: one snapshot from Tradier via WheelTracker's own client + GEX engine, frozen into
      `data/nbis.json`. Candidates are chosen by applying the four limits to the real chain: the
      winner is the best-annualized put passing all four; the two losers are the nearest
-     candidates that each fail a different limit. If no real put passes all four that day, show
-     the closest and say "no trade today" honestly rather than inventing one.
+     candidates that each fail a different limit. The section always ends on a real trade: if
+     no put passes all four limits in today's chain, the snapshot is retaken on a later trading
+     day until one does. Nothing is invented and the page never says "no trade".
 3. **02 AI Job Search Agent** — label `SAMPLE DATA`, fictional companies.
    - Copy: "Pulls new postings every week, removes anything that breaks my rules, scores the rest
      against my interests and experience, and sends me a ranked shortlist." (No "Claude scores".)

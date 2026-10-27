@@ -61,7 +61,7 @@ def check() -> list[str]:
     for ref in parser.refs:
         if ref.startswith(("http://", "https://", "mailto:", "#")):
             continue
-        if not (ROOT / ref).exists():
+        if not (ROOT / ref.split("?")[0]).exists():
             errors.append(f"broken local reference: {ref}")
     for src in parser.imgs_without_alt:
         errors.append(f"img without alt: {src}")

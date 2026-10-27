@@ -176,6 +176,53 @@ html.anim .job.fail { display: grid; }
   .pitchgrid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
 
+/* phones while animating: each project is one pinned screen */
+@media (max-width: 900px) {
+  html.anim .proj { height: 100vh; height: 100svh; min-height: 0; overflow: hidden; padding: 2.5svh 14px 2svh; gap: 1.6svh; }
+  html.anim .head .n { font-size: 10px; }
+  html.anim .head h2 { font-size: 27px; margin: 4px 0 6px; }
+  html.anim .head p { font-size: 12.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  html.anim .body { gap: 10px; align-content: start; }
+  html.anim .panel { padding: 9px 11px; border-radius: 11px; }
+  html.anim .panel h3 { margin-bottom: 4px; font-size: 10px; }
+  html.anim .rule { font-size: 11.5px; padding: 3px 0; }
+  html.anim .code { font-size: 11px; }
+  /* 01: heatmap, then one panel slot (limits, then candidates) */
+  html.anim .hm { padding: 14px 0 16px; }
+  html.anim .hm-grid .c { height: 1.55svh; }
+  html.anim .hm-grid .s { line-height: 1.55svh; font-size: 9px; }
+  html.anim .hm-grid .h { font-size: 9px; }
+  html.anim #p1 .side { display: grid; }
+  html.anim #p1 .side > .panel { grid-area: 1 / 1; }
+  html.anim .cand { padding: 4px 0; font-size: 10.5px; }
+  html.anim .verdict { font-size: 11px; margin-top: 6px; }
+  /* 02: compact rules on top; the feed and the chat share one slot */
+  html.anim #p2 .rules { padding: 7px 10px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px; }
+  html.anim #p2 .rules h3 { display: none; }
+  html.anim #p2 .rule { font-size: 10.5px; border-bottom: 0; }
+  html.anim #feed, html.anim #p2 .side { grid-area: 2 / 1; }
+  html.anim .feed { gap: 5px; }
+  html.anim .job { padding: 5px 10px; font-size: 12px; box-shadow: 0 3px 0 rgba(0, 0, 0, .4); }
+  html.anim .job small { font-size: 10px; }
+  html.anim .job .fit { font-size: 10.5px; padding: 2px 7px; }
+  /* 03: the headline stream and the digest share one slot */
+  html.anim #stream, html.anim #p3 .side { grid-area: 1 / 1; }
+  html.anim .stream { gap: 4px; }
+  html.anim .hl { padding: 4px 8px; font-size: 11px; line-height: 1.3; }
+  html.anim .hl small { font-size: 9px; margin-bottom: 0; }
+  html.anim .bubble { font-size: 11.5px; padding: 8px 10px; }
+  html.anim .tg .chat { padding: 9px; }
+}
+
+/* short phones (iPhone SE and similar) */
+@media (max-width: 900px) and (max-height: 740px) {
+  html.anim .head h2 { font-size: 24px; }
+  html.anim .head p { -webkit-line-clamp: 2; }
+  html.anim .hm { padding: 12px 0 14px; }
+  html.anim .hm-grid .c { height: 1.3svh; }
+  html.anim .hm-grid .s { line-height: 1.3svh; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }

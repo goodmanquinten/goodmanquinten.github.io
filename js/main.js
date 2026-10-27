@@ -1,16 +1,23 @@
 /* motion shell: decides whether to animate, then starts smooth scroll, the rail and each section */
 (async function () {
-  /* desktop: pin and scrub each build over 850px; phones: no pin, play once on entry */
+  /* desktop: pin and scrub each build over 850px.
+     phones: pin too, and each swipe snaps to the next step (timelines mark steps with labels) */
   const wide = matchMedia('(min-width: 901px)').matches;
+  window.isWide = wide;
   window.sectionST = (trigger, extra = {}) => wide
     ? { trigger, start: 'top top', end: '+=850', scrub: .4, pin: true, ...extra }
-    : { trigger, start: 'top 65%', toggleActions: 'play none none none', ...extra };
+    : {
+        trigger, start: 'top top', end: '+=1500', scrub: .3, pin: true, anticipatePin: 1,
+        snap: { snapTo: 'labelsDirectional', duration: { min: .25, max: .6 }, delay: .05, ease: 'power1.inOut' },
+        ...extra,
+      };
   const animate = !matchMedia('(prefers-reduced-motion: reduce)').matches && window.gsap && window.ScrollTrigger;
   let lenis = null;
 
   if (animate) {
     document.documentElement.classList.add('anim');
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });  /* phone address bar showing/hiding must not re-pin */
     if (window.Lenis) {
       lenis = new Lenis({ lerp: .1 });
       lenis.on('scroll', ScrollTrigger.update);

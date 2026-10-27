@@ -87,16 +87,28 @@ window.initOptions = async function (animate) {
   const tl = gsap.timeline({
     scrollTrigger: sectionST('#p1', { onRefresh: place }),
   });
-  tl.from(cells, { opacity: 0, scale: .5, duration: .8, stagger: { each: .8 / cells.length } })
+  tl.addLabel('start')
+    .from(cells, { opacity: 0, scale: .5, duration: .8, stagger: { each: .8 / cells.length } })
+    .addLabel('grid')
     .from(['#spot', '#flip'], { opacity: 0, scaleX: 0, transformOrigin: 'left center', duration: .3, stagger: .15 })
+    .addLabel('lines')
     .from(['#dteBand', '#deltaBand'], { opacity: 0, duration: .25, stagger: .1 })
-    .from(['#m0', '#m1', '#cands .cand'], { opacity: 0, duration: .25, stagger: .05 });
+    .addLabel('limits');
+  /* phones show one panel at a time: the limits give way to the candidates */
+  if (!isWide) {
+    tl.to('#p1 .side .panel:first-child', { opacity: 0, duration: .15 })
+      .from('#p1 .side .panel:nth-child(2)', { opacity: 0, duration: .15 });
+  }
+  tl.from(['#m0', '#m1', '#cands .cand'], { opacity: 0, duration: .25, stagger: .05 })
+    .addLabel('cands');
   loseRows.forEach((r, i) => {
     tl.from(r.querySelector('.why'), { opacity: 0, duration: .1 })
       .from(r.querySelector('.x'), { scaleX: 0, transformOrigin: 'left center', duration: .15 })
-      .fromTo([r, '#m' + i], { opacity: 1 }, { opacity: .3, duration: .12, immediateRender: false });
+      .fromTo([r, '#m' + i], { opacity: 1 }, { opacity: .3, duration: .12, immediateRender: false })
+      .addLabel('lose' + i);
   });
   tl.fromTo('#mw', { scale: 1.8, opacity: 0 }, { scale: 1, opacity: 1, duration: .3, ease: 'back.out(2)' })
     .from('#verdict', { opacity: 0, y: 8, duration: .2 })
+    .addLabel('done')
     .to({}, { duration: .15 });
 };

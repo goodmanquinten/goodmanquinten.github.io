@@ -30,12 +30,20 @@ b { font-weight: 600; }
 /* hero: a split doorway. Drag the seam fully left for work, fully right for life */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 540px; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .hero .layer { position: absolute; inset: 0; }
-.work-l { background: var(--bg); display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 0 9vw 0 7vw; }
-.work-l .eye { font: 11px var(--mono); color: var(--cyan); letter-spacing: .14em; }
-.work-l .heat { display: grid; gap: 3px; max-width: 520px; }
-.work-l .heat span { height: 1.7vh; height: 1.7svh; border-radius: 2px; }
-.work-l .v { font: 12px var(--mono); color: var(--muted); max-width: 520px; }
-.work-l .v b { color: var(--gold); font-weight: 600; }
+.work-l { background: var(--bg); }
+.heat-bg { position: absolute; left: 0; top: 0; bottom: 0; width: 50%; display: grid; gap: 4px; padding: 4px; opacity: calc(.22 * var(--fade, 1)); }
+.heat-bg span { border-radius: 3px; }
+.half-note { position: absolute; top: calc(7% + env(safe-area-inset-top, 0px)); width: 50%; display: flex; justify-content: center; padding: 0 4vw; pointer-events: none; }
+.half-note > * { max-width: 34ch; }
+.w-note { left: 0; opacity: var(--fade, 1); }
+.l-note { right: 0; }
+.half-note { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+.half-note .eye { font: 600 11px var(--mono); letter-spacing: .24em; }
+.half-note p { margin: 0; font-size: 15px; line-height: 1.45; padding: 10px 16px; border-radius: 14px; }
+.w-note .eye { color: var(--cyan); }
+.w-note p { color: var(--soft); background: rgba(11, 13, 18, .8); }
+.l-note .eye { color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
+.l-note p { color: #fff; background: rgba(11, 13, 18, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .life-l { clip-path: inset(0 0 0 var(--x, 50%)); background: #1b1d1a; }
 .life-l img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 40%; display: block; }
 .hero .name { position: absolute; left: 0; right: 0; top: 41%; transform: translateY(-58%); margin: 0; text-align: center; z-index: 3; pointer-events: none;
@@ -81,7 +89,8 @@ html.on-life .rail { display: none; }
 .lfoot { margin-top: 50px; display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 15px; border-top: 1px solid var(--pedge); padding-top: 18px; }
 .lfoot a { color: var(--pink); }
 @media (max-width: 760px) {
-  .work-l { padding: 0 6vw; }
+  .half-note { padding: 0 10px; top: calc(5% + env(safe-area-inset-top, 0px)); }
+  .half-note p { font-size: 12px; padding: 8px 10px; }
   .me { grid-template-columns: minmax(0, 1fr); gap: 22px; padding-top: 74px; }
   .gal { columns: 2; column-gap: 8px; } .gal figure { margin-bottom: 8px; }
   .life { padding: 0 16px 60px; }

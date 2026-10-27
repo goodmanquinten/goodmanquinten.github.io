@@ -8,34 +8,26 @@ window.initHero = async function (animate) {
   life.hidden = true;  /* without JS the Life section simply follows the work */
   hero.classList.add('pulse');
 
-  /* work layer: a compact view of the real NBIS gamma grid */
+  /* work layer: the real NBIS gamma grid as a faint backdrop filling the left half */
   try {
     const d = await fetch('data/nbis.json').then(r => r.json());
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const [y, m, day] = d.date.split('-').map(Number);
-    $('hero-eye').textContent = `REAL DATA · ${d.ticker} · ${months[m - 1]} ${day}, ${y}`.toUpperCase();
     const max = Math.max(...d.net.flat().map(v => Math.abs(v || 0)));
     const shade = v => { if (!v) return '#151a22'; const x = v / max;
       return x > .5 ? '#c9d34a' : x > .2 ? '#1d9e75' : x > .03 ? '#1f5a45' : x > -.03 ? '#1c2230' : x > -.2 ? '#2a2440' : x > -.5 ? '#5b3a9a' : '#9d78e6'; };
     const heat = $('hero-heat');
     heat.style.gridTemplateColumns = `repeat(${d.dtes.length}, 1fr)`;
-    heat.style.width = `min(100%, ${d.dtes.length * 58}px)`;
-    const wr = d.strikes.indexOf(d.winner.strike), wc = d.dtes.indexOf(d.winner.dte);
-    heat.innerHTML = d.net.map((row, r) => row.map((v, c) =>
-      `<span style="background:${shade(v)}${r === wr && c === wc ? ';outline:2px solid #f2d34a;outline-offset:1px' : ''}"></span>`).join('')).join('');
-    const [lead, ...rest] = d.verdict.split(':');
-    $('hero-v').innerHTML = `<b>${lead}:</b>${rest.join(':')}`;
+    heat.style.gridTemplateRows = `repeat(${d.strikes.length}, 1fr)`;
+    heat.innerHTML = d.net.map(row => row.map(v => `<span style="background:${shade(v)}"></span>`).join('')).join('');
   } catch (e) { /* the grid is decoration here; the options section reports its own errors */ }
 
   let x = 50;
-  const workBits = [...hero.querySelectorAll('.work-l > *')];
   const setX = v => {
     x = Math.max(0, Math.min(100, v));
     hero.style.setProperty('--x', x + '%');
     knob.setAttribute('aria-valuenow', Math.round(x));
     /* fully over to Work: the grid is a preview of the split, so it fades out and only the name stays */
     const o = x <= 80 ? 1 : Math.max(0, (100 - x) / 20);
-    workBits.forEach(el => { el.style.opacity = o; });
+    hero.style.setProperty('--fade', o);
   };
   const animateTo = (to, done) => {
     if (!motion) { setX(to); done && done(); return; }

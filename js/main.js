@@ -22,9 +22,10 @@
     gsap.to('.cue', { opacity: 0, scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=200', scrub: true } });
   }
 
-  await initOptions(animate);
-  await initJobs(animate);
-  await initNews(animate);
+  /* each section is independent: one failing (e.g. data/nbis.json missing) can't stop the others */
+  for (const init of [initOptions, initJobs, initNews]) {
+    try { await init(animate); } catch (e) { console.error(e); }
+  }
 
   /* progress rail: highlights the section in view; links use smooth scroll when available */
   const links = [...document.querySelectorAll('.rail a')];

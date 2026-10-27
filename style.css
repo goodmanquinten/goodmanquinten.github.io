@@ -131,6 +131,16 @@ html.anim .job.fail { display: grid; }
 /* pinned sections fill the screen exactly while animating */
 @media (min-width: 901px) { html.anim .proj { height: 100vh; min-height: 0; overflow: hidden; } }
 
+@media (min-width: 901px) and (max-width: 1200px) {
+  .jobwrap { grid-template-columns: 190px minmax(0, 1fr) 260px; gap: 16px; }
+  .newswrap { grid-template-columns: minmax(0, 1fr) 300px; }
+  .hmwrap { grid-template-columns: minmax(0, 1fr) 300px; }
+  .rule { font-size: 12px; padding: 3px 0; }
+  .job { padding: 6px 10px; font-size: 12px; }
+  .job small { font-size: 10px; }
+  .bubble { font-size: 11.5px; }
+}
+
 @media (max-width: 900px) {
   .rail { display: none; }
   .proj { padding: 4vh 16px; gap: 2vh; }

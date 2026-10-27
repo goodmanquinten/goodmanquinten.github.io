@@ -60,3 +60,10 @@ def test_rule_4_is_at_or_below_put_wall():
     out = select_trade(puts, LIMITS)
     assert out["winner"]["strike"] == 150
     assert out["losers"][0]["reason"] == "✕ 4 · above 150 put wall"
+
+
+def test_nan_premium_fails_rule_3():
+    puts = [put(155, 11, 0.22, float("nan")), put(154, 11, 0.20, 0.15)]
+    out = select_trade(puts, LIMITS)
+    assert out["winner"]["strike"] == 154
+    assert out["losers"][0]["reason"].startswith("✕ 3")

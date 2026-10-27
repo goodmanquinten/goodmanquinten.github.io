@@ -31,7 +31,7 @@ def first_failure(p: dict, limits: dict) -> tuple[int, str] | None:
     lo, hi = limits["delta"]
     if not lo <= p["delta"] <= hi:
         return 2, f"✕ 2 · delta {p['delta']:.2f}"
-    if p["ann"] < limits["min_ann"]:
+    if not p["ann"] >= limits["min_ann"]:  # NaN fails too
         return 3, f"✕ 3 · {p['ann'] * 100:.1f}% annualized"
     if p["strike"] > p["put_wall"]:
         return 4, f"✕ 4 · above {p['put_wall']:g} put wall"
@@ -88,10 +88,11 @@ def main() -> int:
     chain = snap.chain[snap.chain["option_type"] == "put"]
     for row in chain.itertuples():
         k, exp = float(row.strike), as_date(row.expiration)
-        if k not in strikes or exp not in exps or row.bid is None or row.ask is None:
+        bid, ask = (float("nan") if x is None else float(x) for x in (row.bid, row.ask))
+        if k not in strikes or exp not in exps or not (bid > 0 and ask > 0):  # NaN-safe
             continue
         dte = (exp - today).days
-        mid = (float(row.bid) + float(row.ask)) / 2
+        mid = (bid + ask) / 2
         if dte <= 0 or mid <= 0 or row.delta is None or math.isnan(float(row.delta)):
             continue
         col = m.net[exp]

@@ -46,7 +46,18 @@ def ring(arcs, idxs):
     for i in idxs:
         a = arcs[i] if i >= 0 else arcs[~i][::-1]
         pts.extend(a if not pts else a[1:])
-    return pts
+    # rings that cross the 180° line (Russia, Fiji) would streak across the whole map;
+    # keep longitudes continuous instead, so the overhang falls outside the frame and is clipped
+    out, prev = [], None
+    for lon, lat in pts:
+        if prev is not None:
+            while lon - prev > 180:
+                lon -= 360
+            while lon - prev < -180:
+                lon += 360
+        out.append((lon, lat))
+        prev = lon
+    return out
 
 
 def main() -> None:

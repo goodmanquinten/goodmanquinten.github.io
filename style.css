@@ -91,7 +91,13 @@ html.on-life .rail { display: none; }
 .chips span { font: 12px var(--mono); border: 1px solid var(--pedge); border-radius: 999px; padding: 5px 11px; color: #3c3f37; }
 .path { font: 12px var(--mono); color: var(--pmuted); }
 .path b { color: var(--pink); font-weight: 600; }
-.places { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 56px; border-top: 1px solid var(--pedge); padding-top: 18px; font: 600 11px var(--mono); letter-spacing: .14em; color: var(--pmuted); }
+.travel { margin-top: 56px; border-top: 1px solid var(--pedge); padding-top: 18px; display: flex; flex-direction: column; gap: 14px; }
+.travel h3 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
+.world { width: 100%; max-width: 720px; height: auto; display: block; }
+.world .land path { fill: #d7dbd2; stroke: var(--paper); stroke-width: .6; }
+.world .been path { fill: #1d6f86; stroke: var(--paper); stroke-width: .6; }
+.world .been path:hover { fill: #13506a; }
+.clist { margin: 0; font: 12px/1.8 var(--mono); color: var(--pmuted); }
 .gal-h { margin: 56px 0 16px; }
 .gal-h h3 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
 .gal { columns: 3 260px; column-gap: 14px; }

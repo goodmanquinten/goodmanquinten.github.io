@@ -7,6 +7,7 @@ window.initNews = async function (animate) {
   const keys = heads.filter(h => h.classList.contains('key'));
 
   const tl = gsap.timeline({ scrollTrigger: sectionST('#p3') });
+  ghostBuild(tl, document.querySelector('#p3'));
   tl.addLabel('start').fromTo(heads, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: .4, stagger: .05 }).addLabel('in');
   drops.forEach(h => {
     tl.from(h.querySelector('.dtag'), { opacity: 0, duration: .08 })

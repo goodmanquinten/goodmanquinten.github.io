@@ -87,6 +87,7 @@ window.initOptions = async function (animate) {
   const tl = gsap.timeline({
     scrollTrigger: sectionST('#p1', { onRefresh: place }),
   });
+  ghostBuild(tl, document.querySelector('#p1'));
   tl.addLabel('start')
     .from(cells, { opacity: 0, scale: .5, duration: .8, stagger: { each: .8 / cells.length } })
     .addLabel('grid')

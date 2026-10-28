@@ -90,9 +90,9 @@ window.initHero = async function (animate) {
     if (e.key === 'ArrowRight') { e.preventDefault(); goWork(); }
     if (e.key === 'ArrowLeft') { e.preventDefault(); goLife(); }
   });
+  window.heroGo = side => side === 'life' ? goLife() : (setX(100), show('work'));
   $('go-work').addEventListener('click', goWork);
   $('go-life').addEventListener('click', goLife);
-  $('to-work').addEventListener('click', e => { e.preventDefault(); setX(100); show('work'); });
   back.addEventListener('click', reset);
   /* coming back up to the top after choosing a side turns the opener back into the 50/50 split */
   addEventListener('scroll', () => {

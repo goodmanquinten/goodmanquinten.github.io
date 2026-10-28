@@ -89,8 +89,7 @@ def main() -> None:
     svg = (f'<svg class="world" viewBox="0 0 {W} {H}" role="img" aria-label="World map with the {len(VISITED)} countries I have visited highlighted">'
            f'<g class="land">{"".join(other)}</g><g class="been">{"".join(visited)}</g></svg>')
     shown = sorted("United States" if n == "United States of America" else n for n in VISITED)
-    n = len([v for v in VISITED if v != "Puerto Rico"])
-    block = (f'<div class="travel"><h3>{n} countries and Puerto Rico so far</h3>{svg}'
+    block = (f'<div class="travel"><h3>{len(VISITED)} countries so far</h3>{svg}'
              f'<p class="clist">{" · ".join(shown)}</p></div>')
     index = ROOT / "index.html"
     html = index.read_text(encoding="utf-8")
